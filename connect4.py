@@ -36,11 +36,16 @@ def dropToken(num):
     #checkBoard(num)
     printBoard()
 
-def checkHorTok(row,col,tok):
-    count = 0
+def checkHorTok(row,col,leftToken):
     for i in range(4):
-        if board[row][col + i] != tok:
-            
+        if board[row][col + i] != leftToken:
+            return False
+    
+    return True
+
+def checkVertTok(row,col,topToken):
+    for i in range(4):
+        if board[row+1][col] != topToken:
             return False
     return True
 
@@ -50,31 +55,17 @@ def checkHorBoard(tok):
         for c in range(4):
             if checkHorTok(r,c,tok):
                 print(tok + " WINS!")
-                print(str(r) + ' ' + str(c))
                 won = True
                 break
         if won:
             break
     print("Code Ends")
 
+def checkVerBoard(tok):
+    
 
-# def checkBoard(col):
-#     if p1Turn:
-#         checkPiece = "X"
-#     if not p1Turn:
-#         checkPiece = "O"
-    
-#     cInd = col-1
-#     rInd = 6 - columnStat[cInd]
 
-#     print(cInd)
-#     print(rInd)
-    
-#     print(board[rInd][cInd])
-    
-#     seq = 0
-#     if board[rInd][cInd] == checkPiece:
-#         print(checkPiece + " wins!")
+
         
 printBoard()
 dropToken(7)
@@ -87,4 +78,7 @@ dropToken(1)
 dropToken(2)
 dropToken(1)
 
-checkHorBoard('E')
+
+
+if checkVertTok(1,0,'O'):
+    print("working code")
