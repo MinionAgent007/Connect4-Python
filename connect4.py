@@ -61,12 +61,20 @@ def checkHorBoard(tok):
             break
     print("Code Ends")
 
-def checkVerBoard(tok):
-    
+def checkVertBoard(tok):
+    won = False
+    for r in range(3):
+        for c in range(7):
+            if checkVertTok(r,c,tok):
+                print(tok + " WINS!")
+                won = True
+                break
+        if won:
+            break
 
 
 
-        
+
 printBoard()
 dropToken(7)
 dropToken(1)
@@ -80,5 +88,4 @@ dropToken(1)
 
 
 
-if checkVertTok(1,0,'O'):
-    print("working code")
+checkVertBoard('O')
