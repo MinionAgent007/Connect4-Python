@@ -59,7 +59,7 @@ def checkHorBoard(tok):
                 break
         if won:
             break
-    print("Code Ends")
+    return won
 
 def checkVertBoard(tok):
     won = False
@@ -71,21 +71,51 @@ def checkVertBoard(tok):
                 break
         if won:
             break
+    return won
 
+#neg for negative because the tokens are in a negative line
+def checkNegTok(row,col,topRightToken):
+    for i in range(4):
+        if board[row+i][col+i] != topRightToken:
+            return False
+    return True
 
+def checkNegBoard(tok):
+    won = False
+    for r in range(3):
+        for c in range(4):
+            if checkNegTok(r,c,tok):
+                print(tok + " WINS!")
+                won = True
+                break
+        if won:
+            break
+    return won
 
+# pos for positive because tokens are in a positive line
+def checkPosTok(row,col,bottomRightToken):
+    for i in range(4):
+        if board[row-i][col+i] != bottomRightToken:
+            return False
+    return True
+
+def checkPosBoard(tok):
+    won = False
+    for r in range(3):
+        for c in range(4):
+            if checkPosTok(r+3, c, tok):
+                print(tok + " WINS!")
+                won = True
+                break
+        if won:
+            break
+    return won
+
+board[5][3] = "O"
+board[4][4] = "O"
+board[3][5] = "O"
+board[2][6] = "O"
 
 printBoard()
-dropToken(7)
-dropToken(1)
-dropToken(1)
-dropToken(3)
-dropToken(1)
-dropToken(4)
-dropToken(1)
-dropToken(2)
-dropToken(1)
 
-
-
-checkVertBoard('O')
+checkPosBoard('O')
